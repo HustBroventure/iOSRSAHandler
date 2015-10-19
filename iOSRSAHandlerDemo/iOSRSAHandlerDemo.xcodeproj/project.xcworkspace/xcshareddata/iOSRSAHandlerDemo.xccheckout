@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>7C751084-F56F-40DE-BD90-93FADE76F885</string>
+	<key>IDESourceControlProjectName</key>
+	<string>iOSRSAHandlerDemo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>19C081D34A34C38E4E1908702D483A051341F687</key>
+		<string>https://github.com/HustBroventure/iOSRSAHandler.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iOSRSAHandlerDemo/iOSRSAHandlerDemo.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>19C081D34A34C38E4E1908702D483A051341F687</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/HustBroventure/iOSRSAHandler.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>19C081D34A34C38E4E1908702D483A051341F687</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>19C081D34A34C38E4E1908702D483A051341F687</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iOSRSAHandler</string>
+		</dict>
+	</array>
+</dict>
+</plist>

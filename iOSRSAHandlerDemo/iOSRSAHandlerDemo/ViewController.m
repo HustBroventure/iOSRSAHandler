@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "HBRSAHandler.h"
 @interface ViewController ()
 
 @end
@@ -16,12 +16,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+   
+    
+    
+    NSString *publicKeyFilePath = [[NSBundle mainBundle] pathForResource:@"rsa_public_key.pem" ofType:nil];
+    
+    NSString *privateKeyFilePath = [[NSBundle mainBundle] pathForResource:@"rsa_private_key.pem" ofType:nil];
+    
+    HBRSAHandler* handler = [HBRSAHandler new];
+    [handler importKeyWithType:KeyTypePublic andPath:publicKeyFilePath];
+    [handler importKeyWithType:KeyTypePrivate andPath:privateKeyFilePath];
+    
+    NSString* sig = [handler signString:@"wangfeng"];
+    NSString* sigMd5 = [handler signMD5String:@"wangfeng"];
+    NSLog(@"%@      %@",sig,sigMd5);
+    
+    BOOL isMatch = [handler verifyString:@"wangfeng" withSign:sig];
+    BOOL isMatchMd5 = [handler verifyMD5String:@"wangfeng" withSign:sigMd5];
+    
+    NSLog(@"%d      %d",isMatch,isMatchMd5);
+
+    NSString* enString = [handler encryptByRsa:@"wangfeng" withKeyType:KeyTypePublic];
+    NSString* deString = [handler decryptByRsa:enString withKeyType:KeyTypePrivate];
+    NSLog(@"%@",deString);
+    
+
+    
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 @end
