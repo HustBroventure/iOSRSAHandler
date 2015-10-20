@@ -27,7 +27,7 @@ typedef enum {
 - (NSString *)signMD5String:(NSString *)string;
 
 
-- (NSString *) encryptByRsa:(NSString*)content withKeyType:(KeyType)keyType;
-- (NSString *) decryptByRsa:(NSString*)content withKeyType:(KeyType)keyType;
+- (NSString *) encryptWithPublicKey:(NSString*)content;
+- (NSString *) decryptWithPrivatecKey:(NSString*)content;
 
 @end

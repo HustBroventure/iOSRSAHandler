@@ -11,8 +11,8 @@
 		0A592DF61BD4EA1400BCBB43 /* rsa_public_key.pem in Resources */ = {isa = PBXBuildFile; fileRef = 0A592DF51BD4EA1400BCBB43 /* rsa_public_key.pem */; };
 		0A592DF91BD4EA3F00BCBB43 /* HBRSAHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A592DF81BD4EA3F00BCBB43 /* HBRSAHandler.m */; };
 		0A592E4F1BD4EBAF00BCBB43 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0A592DFC1BD4EBAF00BCBB43 /* LICENSE */; };
-		0A592E501BD4EBAF00BCBB43 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A592E491BD4EBAF00BCBB43 /* libcrypto.a */; };
-		0A592E511BD4EBAF00BCBB43 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A592E4A1BD4EBAF00BCBB43 /* libssl.a */; };
+		0A5D1EE41BD5C8220052E1F7 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5D1EE21BD5C8220052E1F7 /* libcrypto.a */; };
+		0A5D1EE51BD5C8220052E1F7 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5D1EE31BD5C8220052E1F7 /* libssl.a */; };
 		0AC7851E1BD2613D00B2AAF2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC7851D1BD2613D00B2AAF2 /* main.m */; };
 		0AC785211BD2613D00B2AAF2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC785201BD2613D00B2AAF2 /* AppDelegate.m */; };
 		0AC785241BD2613D00B2AAF2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC785231BD2613D00B2AAF2 /* ViewController.m */; };
@@ -113,8 +113,8 @@
 		0A592E461BD4EBAF00BCBB43 /* x509.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509.h; sourceTree = "<group>"; };
 		0A592E471BD4EBAF00BCBB43 /* x509_vfy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509_vfy.h; sourceTree = "<group>"; };
 		0A592E481BD4EBAF00BCBB43 /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
-		0A592E491BD4EBAF00BCBB43 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
-		0A592E4A1BD4EBAF00BCBB43 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		0A5D1EE21BD5C8220052E1F7 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		0A5D1EE31BD5C8220052E1F7 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		0AC785181BD2613D00B2AAF2 /* iOSRSAHandlerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSRSAHandlerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AC7851C1BD2613D00B2AAF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AC7851D1BD2613D00B2AAF2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -135,8 +135,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A592E511BD4EBAF00BCBB43 /* libssl.a in Frameworks */,
-				0A592E501BD4EBAF00BCBB43 /* libcrypto.a in Frameworks */,
+				0A5D1EE51BD5C8220052E1F7 /* libssl.a in Frameworks */,
+				0A5D1EE41BD5C8220052E1F7 /* libcrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,8 +166,6 @@
 			isa = PBXGroup;
 			children = (
 				0A592DFB1BD4EBAF00BCBB43 /* include */,
-				0A592E491BD4EBAF00BCBB43 /* libcrypto.a */,
-				0A592E4A1BD4EBAF00BCBB43 /* libssl.a */,
 			);
 			path = openssl;
 			sourceTree = "<group>";
@@ -175,6 +173,8 @@
 		0A592DFB1BD4EBAF00BCBB43 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				0A5D1EE21BD5C8220052E1F7 /* libcrypto.a */,
+				0A5D1EE31BD5C8220052E1F7 /* libssl.a */,
 				0A592DFC1BD4EBAF00BCBB43 /* LICENSE */,
 				0A592DFD1BD4EBAF00BCBB43 /* openssl */,
 			);
@@ -565,6 +565,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/iOSRSAHandlerDemo/HBRSAHandler/openssl",
+					"$(PROJECT_DIR)/iOSRSAHandlerDemo/HBRSAHandler/openssl/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -585,6 +586,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/iOSRSAHandlerDemo/HBRSAHandler/openssl",
+					"$(PROJECT_DIR)/iOSRSAHandlerDemo/HBRSAHandler/openssl/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";

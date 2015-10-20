@@ -73,19 +73,25 @@ typedef enum {
     if (type == KeyTypePrivate) {
         rsa = PEM_read_bio_RSAPrivateKey(bio, NULL, NULL, "");
         _rsa_pri = rsa;
+        if (rsa != NULL && 1 == RSA_check_key(rsa)) {
+            status = YES;
+        } else {
+            status = NO;
+        }
+
+
     }
     else{
         rsa = PEM_read_bio_RSA_PUBKEY(bio, NULL, NULL, NULL);
-        _rsa_pri = rsa;
+        _rsa_pub = rsa;
+        if (rsa != NULL) {
+            status = YES;
+        } else {
+            status = NO;
+        }
     }
     
-    if (rsa != NULL && 1 == RSA_check_key(rsa)) {
-        status = YES;
-    }
-    else {
-        status = YES;
-    }
-    BIO_free_all(bio);
+           BIO_free_all(bio);
     [[NSFileManager defaultManager] removeItemAtPath:rsaFilePath error:nil];
     return status;
 }
@@ -95,6 +101,11 @@ typedef enum {
     //signString为base64字符串
 - (BOOL)verifyString:(NSString *)string withSign:(NSString *)signString
 {
+    if (!_rsa_pub) {
+        NSLog(@"please import public key first");
+        return NO;
+    }
+
     const char *message = [string cStringUsingEncoding:NSUTF8StringEncoding];
     int messageLength = (int)[string lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
     NSData *signatureData = [[NSData alloc]initWithBase64EncodedString:signString options:0];
@@ -121,6 +132,11 @@ typedef enum {
 #pragma mark RSA MD5 验证签名
 - (BOOL)verifyMD5String:(NSString *)string withSign:(NSString *)signString
 {
+    if (!_rsa_pub) {
+        NSLog(@"please import public key first");
+        return NO;
+    }
+
     const char *message = [string cStringUsingEncoding:NSUTF8StringEncoding];
         // int messageLength = (int)[string lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
     NSData *signatureData = [[NSData alloc]initWithBase64EncodedString:signString options:0];
@@ -145,6 +161,10 @@ typedef enum {
 
 - (NSString *)signString:(NSString *)string
 {
+    if (!_rsa_pri) {
+        NSLog(@"please import private key first");
+        return nil;
+    }
     const char *message = [string cStringUsingEncoding:NSUTF8StringEncoding];
     int messageLength = (int)strlen(message);
     unsigned char *sig = (unsigned char *)malloc(256);
@@ -170,6 +190,10 @@ typedef enum {
 }
 - (NSString *)signMD5String:(NSString *)string
 {
+    if (!_rsa_pri) {
+        NSLog(@"please import private key first");
+        return nil;
+    }
     const char *message = [string cStringUsingEncoding:NSUTF8StringEncoding];
         //int messageLength = (int)strlen(message);
     unsigned char *sig = (unsigned char *)malloc(256);
@@ -200,38 +224,27 @@ typedef enum {
     
 }
 
-- (NSString *) encryptByRsa:(NSString*)content withKeyType:(KeyType)keyType
+- (NSString *) encryptWithPublicKey:(NSString*)content
 {
+    if (!_rsa_pub) {
+        NSLog(@"please import public key first");
+        return nil;
+    }
     int status;
     int length  = (int)[content length];
     unsigned char input[length + 1];
     bzero(input, length + 1);
     int i = 0;
-    for (; i < length; i++){
+    for (; i < length; i++)
+        {
         input[i] = [content characterAtIndex:i];
         }
     
-    NSInteger  flen_pri = [self getBlockSizeWithRSA_PADDING_TYPE:PADDING andRSA:_rsa_pri];
-    NSInteger  flen_pub = [self getBlockSizeWithRSA_PADDING_TYPE:PADDING andRSA:_rsa_pub];
-    char *encData = NULL;
+    NSInteger  flen = [self getBlockSizeWithRSA_PADDING_TYPE:PADDING andRSA:_rsa_pub];
     
-    switch (keyType) {
-        case KeyTypePublic:{
-            char *encData = (char*)malloc(flen_pub);
-            bzero(encData, flen_pub);
-
-            status = RSA_public_encrypt(length, (unsigned char*)input, (unsigned char*)encData, _rsa_pub, PADDING);
-        }
-            break;
-            
-        default:{
-           encData = (char*)malloc(flen_pri);
-            bzero(encData, flen_pri);
-            status = RSA_private_encrypt(length, (unsigned char*)input, (unsigned char*)encData, _rsa_pri, PADDING);
-        }
-            
-            break;
-    }
+    char *encData = (char*)malloc(flen);
+    bzero(encData, flen);
+    status = RSA_public_encrypt(length, (unsigned char*)input, (unsigned char*)encData, _rsa_pub, PADDING);
     
     if (status){
         NSData *returnData = [NSData dataWithBytes:encData length:status];
@@ -249,47 +262,34 @@ typedef enum {
     return nil;
 }
 
-- (NSString *) decryptByRsa:(NSString*)content withKeyType:(KeyType)keyType
+- (NSString *) decryptWithPrivatecKey:(NSString*)content
 {
+    if (!_rsa_pri) {
+        NSLog(@"please import private key first");
+        return nil;
+    }    int status;
     
-    int status;
-    
+        //NSData *data = [content base64DecodedData];
     NSData *data = [[NSData alloc]initWithBase64EncodedString:content options:NSDataBase64DecodingIgnoreUnknownCharacters];
     int length = (int)[data length];
     
+    NSInteger flen = [self getBlockSizeWithRSA_PADDING_TYPE:PADDING andRSA:_rsa_pri];
+    char *decData = (char*)malloc(flen);
+    bzero(decData, flen);
     
-    NSInteger  flen_pri = [self getBlockSizeWithRSA_PADDING_TYPE:PADDING andRSA:_rsa_pri];
-    NSInteger  flen_pub = [self getBlockSizeWithRSA_PADDING_TYPE:PADDING andRSA:_rsa_pub];
-    char *encData = NULL;
-    
-    switch (keyType) {
-        case KeyTypePublic:{
-            char *encData = (char*)malloc(flen_pub);
-            bzero(encData, flen_pub);
-            status = RSA_public_decrypt(length, (unsigned char*)[data bytes], (unsigned char*)encData, _rsa_pub, PADDING);
-        }
-            break;
-            
-        default:{
-            encData = (char*)malloc(flen_pri);
-            bzero(encData, flen_pri);
-            status = RSA_private_decrypt(length, (unsigned char*)[data bytes], (unsigned char*)encData, _rsa_pri, PADDING);
-        }
-            
-            break;
-    }
-    
+    status = RSA_private_decrypt(length, (unsigned char*)[data bytes], (unsigned char*)decData, _rsa_pri, PADDING);
+   
     if (status)
         {
-        NSMutableString *decryptString = [[NSMutableString alloc] initWithBytes:encData length:strlen(encData) encoding:NSASCIIStringEncoding];
-        free(encData);
-        encData = NULL;
+        NSMutableString *decryptString = [[NSMutableString alloc] initWithBytes:decData length:strlen(decData) encoding:NSASCIIStringEncoding];
+        free(decData);
+        decData = NULL;
         
         return decryptString;
         }
     
-    free(encData);
-    encData = NULL;
+    free(decData);
+    decData = NULL;
     
     return nil;
 }
@@ -301,19 +301,23 @@ typedef enum {
     if (padding_type == RSA_PADDING_TYPE_PKCS1 || padding_type == RSA_PADDING_TYPE_SSLV23) {
         len -= 11;
     }
+    
     return len;
 }
 
 -(NSString*)formatRSAKeyWithKeyString:(NSString*)keyString andKeytype:(KeyType)type
 {
-    NSInteger lineNum = -1; ;
+    NSInteger lineNum = -1;
+    NSMutableString *result = [NSMutableString string];
+    
     if (type == KeyTypePrivate) {
+        [result appendString:@"-----BEGIN PRIVATE KEY-----\n"];
         lineNum = 79;
     }else if(type == KeyTypePublic){
+    [result appendString:@"-----BEGIN PUBLIC KEY-----\n"];
          lineNum = 76;
     }
-    NSMutableString *result = [NSMutableString string];
-    [result appendString:@"-----BEGIN PUBLIC KEY-----\n"];
+   
     int count = 0;
     for (int i = 0; i < [keyString length]; ++i) {
         unichar c = [keyString characterAtIndex:i];
@@ -325,10 +329,13 @@ typedef enum {
             [result appendString:@"\n"];
             count = 0;
         }
-        
     }
-    [result appendString:@"\n-----END PUBLIC KEY-----\n"];
-    
+    if (type == KeyTypePrivate) {
+        [result appendString:@"\n-----END PRIVATE KEY-----"];
+       
+    }else if(type == KeyTypePublic){
+        [result appendString:@"\n-----END PUBLIC KEY-----"];
+    }
     return result;
  
 }
