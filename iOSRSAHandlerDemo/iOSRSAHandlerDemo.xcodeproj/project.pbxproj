@@ -13,6 +13,11 @@
 		0A592E4F1BD4EBAF00BCBB43 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0A592DFC1BD4EBAF00BCBB43 /* LICENSE */; };
 		0A5D1EE41BD5C8220052E1F7 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5D1EE21BD5C8220052E1F7 /* libcrypto.a */; };
 		0A5D1EE51BD5C8220052E1F7 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5D1EE31BD5C8220052E1F7 /* libssl.a */; };
+		0A8146461D05894B00A53364 /* HBKeyChainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8146451D05894B00A53364 /* HBKeyChainWrapper.m */; };
+		0A8146491D058E2E00A53364 /* HBKeyChainTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8146481D058E2E00A53364 /* HBKeyChainTestViewController.m */; };
+		0A81464E1D059ADA00A53364 /* HBCodingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A81464D1D059ADA00A53364 /* HBCodingObject.m */; };
+		0A8146511D059E9C00A53364 /* HBCodingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8146501D059E9C00A53364 /* HBCodingViewController.m */; };
+		0A8146541D05A1E100A53364 /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8146531D05A1E100A53364 /* NSData+AES256.m */; };
 		0AC7851E1BD2613D00B2AAF2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC7851D1BD2613D00B2AAF2 /* main.m */; };
 		0AC785211BD2613D00B2AAF2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC785201BD2613D00B2AAF2 /* AppDelegate.m */; };
 		0AC785241BD2613D00B2AAF2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC785231BD2613D00B2AAF2 /* ViewController.m */; };
@@ -115,6 +120,16 @@
 		0A592E481BD4EBAF00BCBB43 /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
 		0A5D1EE21BD5C8220052E1F7 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
 		0A5D1EE31BD5C8220052E1F7 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		0A8146441D05894B00A53364 /* HBKeyChainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBKeyChainWrapper.h; sourceTree = "<group>"; };
+		0A8146451D05894B00A53364 /* HBKeyChainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBKeyChainWrapper.m; sourceTree = "<group>"; };
+		0A8146471D058E2E00A53364 /* HBKeyChainTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBKeyChainTestViewController.h; sourceTree = "<group>"; };
+		0A8146481D058E2E00A53364 /* HBKeyChainTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBKeyChainTestViewController.m; sourceTree = "<group>"; };
+		0A81464C1D059ADA00A53364 /* HBCodingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBCodingObject.h; sourceTree = "<group>"; };
+		0A81464D1D059ADA00A53364 /* HBCodingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBCodingObject.m; sourceTree = "<group>"; };
+		0A81464F1D059E9C00A53364 /* HBCodingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBCodingViewController.h; sourceTree = "<group>"; };
+		0A8146501D059E9C00A53364 /* HBCodingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBCodingViewController.m; sourceTree = "<group>"; };
+		0A8146521D05A1E100A53364 /* NSData+AES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES256.h"; sourceTree = "<group>"; };
+		0A8146531D05A1E100A53364 /* NSData+AES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES256.m"; sourceTree = "<group>"; };
 		0AC785181BD2613D00B2AAF2 /* iOSRSAHandlerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSRSAHandlerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AC7851C1BD2613D00B2AAF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AC7851D1BD2613D00B2AAF2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -263,6 +278,26 @@
 			path = openssl;
 			sourceTree = "<group>";
 		};
+		0A8146431D05891C00A53364 /* HBKeyChainWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				0A8146441D05894B00A53364 /* HBKeyChainWrapper.h */,
+				0A8146451D05894B00A53364 /* HBKeyChainWrapper.m */,
+			);
+			name = HBKeyChainWrapper;
+			sourceTree = "<group>";
+		};
+		0A81464B1D059AA900A53364 /* HBCoding */ = {
+			isa = PBXGroup;
+			children = (
+				0A81464C1D059ADA00A53364 /* HBCodingObject.h */,
+				0A81464D1D059ADA00A53364 /* HBCodingObject.m */,
+				0A8146521D05A1E100A53364 /* NSData+AES256.h */,
+				0A8146531D05A1E100A53364 /* NSData+AES256.m */,
+			);
+			name = HBCoding;
+			sourceTree = "<group>";
+		};
 		0AC7850F1BD2613D00B2AAF2 = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +319,8 @@
 		0AC7851A1BD2613D00B2AAF2 /* iOSRSAHandlerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				0A81464B1D059AA900A53364 /* HBCoding */,
+				0A8146431D05891C00A53364 /* HBKeyChainWrapper */,
 				0A592DF21BD4E99F00BCBB43 /* HBRSAHandler */,
 				0AC7851F1BD2613D00B2AAF2 /* AppDelegate.h */,
 				0AC785201BD2613D00B2AAF2 /* AppDelegate.m */,
@@ -293,6 +330,10 @@
 				0AC785281BD2613D00B2AAF2 /* Images.xcassets */,
 				0AC7852A1BD2613D00B2AAF2 /* LaunchScreen.xib */,
 				0AC7851B1BD2613D00B2AAF2 /* Supporting Files */,
+				0A8146471D058E2E00A53364 /* HBKeyChainTestViewController.h */,
+				0A8146481D058E2E00A53364 /* HBKeyChainTestViewController.m */,
+				0A81464F1D059E9C00A53364 /* HBCodingViewController.h */,
+				0A8146501D059E9C00A53364 /* HBCodingViewController.m */,
 			);
 			path = iOSRSAHandlerDemo;
 			sourceTree = "<group>";
@@ -372,6 +413,11 @@
 				TargetAttributes = {
 					0AC785171BD2613D00B2AAF2 = {
 						CreatedOnToolsVersion = 6.4;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+						};
 					};
 					0AC785301BD2613D00B2AAF2 = {
 						CreatedOnToolsVersion = 6.4;
@@ -426,9 +472,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A8146511D059E9C00A53364 /* HBCodingViewController.m in Sources */,
+				0A8146541D05A1E100A53364 /* NSData+AES256.m in Sources */,
 				0AC785241BD2613D00B2AAF2 /* ViewController.m in Sources */,
 				0AC785211BD2613D00B2AAF2 /* AppDelegate.m in Sources */,
+				0A81464E1D059ADA00A53364 /* HBCodingObject.m in Sources */,
+				0A8146461D05894B00A53364 /* HBKeyChainWrapper.m in Sources */,
 				0AC7851E1BD2613D00B2AAF2 /* main.m in Sources */,
+				0A8146491D058E2E00A53364 /* HBKeyChainTestViewController.m in Sources */,
 				0A592DF91BD4EA3F00BCBB43 /* HBRSAHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -555,6 +606,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode6.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -568,6 +622,7 @@
 					"$(PROJECT_DIR)/iOSRSAHandlerDemo/HBRSAHandler/openssl/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -576,6 +631,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode6.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -589,6 +647,7 @@
 					"$(PROJECT_DIR)/iOSRSAHandlerDemo/HBRSAHandler/openssl/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
